@@ -115,14 +115,39 @@ while True:
             criando_arquivo(nome_arquivo_habitante, lista_total)
             limpar_tela()
         case "2":
-            limpar_tela()
+            lista_final1 = []
             contador = 0
-            nome_arquivo_habitante = "dados.txt"
-            lista_idade = []
-            lista_genero = []
+            limpar_tela()
             lista_salario = []
-            lista_total_definitiva = lendo_arquivo(nome_arquivo_habitante)
-            
+            lista_idade = []
+            nome_arquivo = "dados.txt"
+            lista_final1 = lendo_arquivo(nome_arquivo)
+            for habitantes in lista_final1:
+                lista_idade.append(habitantes.idade)
+                if habitantes.sexo == "f" and habitantes.salario >= 5000:
+                    contador += 1
+                lista_salario.append(habitantes.salario)
+                
+            media_salario = media(lista_salario)
+            maior_idade = max(lista_idade)
+            menor_idade = min(lista_idade)
+            lista_final1.append(contador) 
+            lista_final1.append(media_salario) 
+            lista_final1.append(maior_idade)
+            lista_final1.append(menor_idade) 
+            nome_arquivo = "pesquisa_habitantes.txt"
+            criando_arquivo_final(nome_arquivo, lista_final)
+            print("\n=== Exibindo resultado ===")
+            print(f"Média salário do grupo: {media_salario}")
+            print(f"Maior idade do grupo: {maior_idade}")
+            print(f"Menor idade do grupo: {menor_idade}")
+            print(f"Quantidade de mulheres com salário a partir de R$ 5000,00: {contador}")
+        case 3:
+            print("Saindo do programa.")
+            break
+        case _:
+            print("Não existe")
+            continue
             
 
 
