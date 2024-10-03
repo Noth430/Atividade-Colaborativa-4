@@ -36,8 +36,7 @@ ao adicionar uma família,deve-se limpar o terminal e apresentar o menu novament
 @dataclass
 class Habitante:
     idade: int
-    genero_feminino: str
-    genero_masculino: str
+    genero: str
     salario: float
 
 @dataclass
@@ -66,16 +65,12 @@ def sexo(dados):
             mulheres.append(dados)
     return dados
     
-def idade(dados):
-    idade_homem = max(idade)
-    idade = int(input("Digite a sua idade: "))
-    
     
 lista_total = []
-def criando_arquivo(b):
-    with open("pesquisa_habitantes.txt", "a") as lista_habitantes:
+def criando_arquivo(a,b):
+    with open(a, "a") as lista_habitantes:
         for habitante in b:
-            lista_habitantes.write(f" {habitante.idade},{habitante.genero_feminino}, {habitante.genero_masculino} {habitante.salario},  \n")
+            lista_habitantes.write(f" {habitante.idade}, {habitante.genero} {habitante.salario},  \n")
         lista_habitantes.close()
 
 def criando_arquivo_final(a,b):
@@ -87,8 +82,8 @@ def criando_arquivo_final(a,b):
 def lendo_arquivo(a):
     with open(a, "r") as arquivos_habitantes:
         for linha in arquivos_habitantes:
-            idade, genero_feminino, genero_masculino, salario = linha.strip().split(",")
-            lista_total.append(Habitante(idade=int(idade), genero_feminino=str(genero_feminino), genero_masculino=str(genero_masculino) ,salario=float(salario)))
+            idade, genero, salario = linha.strip().split(",")
+            lista_total.append(Habitante(idade=int(idade), genero=str(genero),salario=float(salario)))
             arquivos_habitantes.close()
 
     return lista_total
@@ -105,4 +100,29 @@ def media(a):
 
 def limpar_tela():
     os.system("cls || clear")
+
+while True:
+    menu()
+    opcao = (input("Resposta: "))
+    match opcao:
+        case "1": 
+            habitante = Habitante(
+            idade = int(input("Digite a sua idade: ")),
+            genero = input("Digite o seu gênero: "),
+            salario = float("Digite o valor do seu salário: "))
+            lista_total.append(Habitante)
+            nome_arquivo_habitante = "pesquisa_habitantes.txt"
+            criando_arquivo(nome_arquivo_habitante, lista_total)
+            limpar_tela()
+        case "2":
+            limpar_tela()
+            contador = 0
+            nome_arquivo_habitante = "dados.txt"
+            lista_idade = []
+            lista_genero = []
+            lista_salario = []
+            lista_total_definitiva = lendo_arquivo(nome_arquivo_habitante)
+            
+            
+
 
