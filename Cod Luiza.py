@@ -64,7 +64,14 @@ def sexo(dados):
              homens.append(dados)
         case 'Mulher':
             mulheres.append(dados)
-
+    return dados
+    
+def idade(dados):
+    idade_homem = max(idade)
+    idade = int(input("Digite a sua idade: "))
+    
+    
+lista_total = []
 def criando_arquivo(b):
     with open("pesquisa_habitantes.txt", "a") as lista_habitantes:
         for habitante in b:
@@ -79,4 +86,23 @@ def criando_arquivo_final(a,b):
 
 def lendo_arquivo(a):
     with open(a, "r") as arquivos_habitantes:
+        for linha in arquivos_habitantes:
+            idade, genero_feminino, genero_masculino, salario = linha.strip().split(",")
+            lista_total.append(Habitante(idade=int(idade), genero_feminino=str(genero_feminino), genero_masculino=str(genero_masculino) ,salario=float(salario)))
+            arquivos_habitantes.close()
+
+    return lista_total
+    
+def media(a):
+    QNT = len(a)
+    soma = sum(a)
+
+    if QNT == 0:
+        return 0
+    else:
+        media == soma/ QNT
+        return media
+
+def limpar_tela():
+    os.system("cls || clear")
 
