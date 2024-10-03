@@ -31,3 +31,22 @@ ao adicionar uma família,deve-se limpar o terminal e apresentar o menu novament
     - O progama deve ler o arquivo para exibir os dados salvos.
 
  """
+
+@dataclass
+class familia:
+    idade: int
+    quantidade_mulheres: str
+    quantidade_homens: str
+    salario: float
+
+
+def sexo(dados):
+    
+    homens = []
+    mulheres = []
+    sexo = input(input("Escolha a opção relacionada a seu sexo: "))
+
+    match sexo:
+        case 1:
+             homens.append(dados)
+             
