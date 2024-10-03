@@ -41,7 +41,7 @@ class Habitante:
 
 @dataclass
 class Final:
-    lista_final: list
+    lista_total: list
 
 def menu():
     print("""
@@ -66,11 +66,11 @@ def sexo(dados):
     return dados
     
     
-lista_total = []
+
 def criando_arquivo(a,b):
     with open(a, "a") as lista_habitantes:
         for habitante in b:
-            lista_habitantes.write(f" {habitante.idade}, {habitante.genero} {habitante.salario},  \n")
+            lista_habitantes.write(f"{habitante.idade}, {habitante.genero}, {habitante.salario}, \n")
         lista_habitantes.close()
 
 def criando_arquivo_final(a,b):
@@ -84,7 +84,7 @@ def lendo_arquivo(a):
         for linha in arquivos_habitantes:
             idade, genero, salario = linha.strip().split(",")
             lista_total.append(Habitante(idade=int(idade), genero=str(genero),salario=float(salario)))
-            arquivos_habitantes.close()
+        arquivos_habitantes.close()
 
     return lista_total
     
@@ -102,6 +102,7 @@ def limpar_tela():
     os.system("cls || clear")
 
 while True:
+    lista_total = []
     menu()
     opcao = (input("Resposta: "))
     match opcao:
@@ -109,44 +110,45 @@ while True:
             habitante = Habitante(
             idade = int(input("Digite a sua idade: ")),
             genero = input("Digite o seu gênero: "),
-            salario = float("Digite o valor do seu salário: "))
-            lista_total.append(Habitante)
+            salario = float(input("Digite o valor do seu salário: ")))
+            lista_total.append(habitante)
             nome_arquivo_habitante = "pesquisa_habitantes.txt"
             criando_arquivo(nome_arquivo_habitante, lista_total)
             limpar_tela()
         case "2":
+            lista_final = []
             lista_final1 = []
             contador = 0
             limpar_tela()
             lista_salario = []
             lista_idade = []
-            nome_arquivo = "dados.txt"
-            lista_final1 = lendo_arquivo(nome_arquivo)
+            nome_arquivo_habitante = "pesquisa_habitantes.txt"
+            lista_final1 = lendo_arquivo(nome_arquivo_habitante)
             for habitantes in lista_final1:
                 lista_idade.append(habitantes.idade)
-                if habitantes.sexo == "f" and habitantes.salario >= 5000:
+                if habitante.genero == "f" and habitante.salario >= 5000:
                     contador += 1
                 lista_salario.append(habitantes.salario)
                 
             media_salario = media(lista_salario)
             maior_idade = max(lista_idade)
             menor_idade = min(lista_idade)
-            lista_final1.append(contador) 
-            lista_final1.append(media_salario) 
-            lista_final1.append(maior_idade)
-            lista_final1.append(menor_idade) 
-            nome_arquivo = "pesquisa_habitantes.txt"
-            criando_arquivo_final(nome_arquivo, lista_final)
+            lista_final.append(contador) 
+            lista_final.append(media_salario) 
+            lista_final.append(maior_idade)
+            lista_final.append(menor_idade) 
+            nome_arquivo1 = "pesquisa_habitantes_final.txt"
+            criando_arquivo_final(nome_arquivo1, lista_final1)
             print("\n=== Exibindo resultado ===")
             print(f"Média salário do grupo: {media_salario}")
             print(f"Maior idade do grupo: {maior_idade}")
             print(f"Menor idade do grupo: {menor_idade}")
             print(f"Quantidade de mulheres com salário a partir de R$ 5000,00: {contador}")
         case 3:
-            print("Saindo do programa.")
+            print("Ok, saindo do programa.")
             break
         case _:
-            print("Não existe")
+            print("Não existe essa opção. Por favor, tente novamente.")
             continue
             
 
